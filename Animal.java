@@ -13,6 +13,8 @@ public abstract class Animal
     private Field field;
     // The animal's position.
     private Location location;
+    // The animal's age.
+    private int age;
 
     /**
      * Constructor for objects of class Animal
@@ -22,6 +24,7 @@ public abstract class Animal
         alive = true;
         this.field = field;
         this.location = location;
+        age = 0;
     }
 
     /**
@@ -78,6 +81,36 @@ public abstract class Animal
         }
     }
     
+    /**
+     * Get the age of the animal
+     * @return The age of the animal
+     */
+    protected int getAge()
+    {
+        return age;
+    }
+    
+    /**
+     * Set the age of the animal
+     */
+    protected void setAge(int animalAge)
+    {
+        age = animalAge;
+    }
+   
+    /**
+     * An animal can breed if it has reached the breeding age.
+     */
+    protected boolean canBreed()
+    {
+        return getAge() >= getBreedingAge();
+    }   
+   
+    /**
+     * Get the breedding age of the Animal
+     */
+    abstract public int getBreedingAge();   
+
     /**
      * Allows an animal to act in accordance to it's type
      */
