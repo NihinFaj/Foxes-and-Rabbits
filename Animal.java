@@ -3,7 +3,7 @@ import java.util.List;
  * The Animal class, which acts a Superclass for all types of animals in the Simulator program
  *
  * @author (Nihinlolamiwa Fajemilehin)
- * @version (5ht of January 2019)
+ * @version (5th of January 2019)
  */
 public abstract class Animal
 {
