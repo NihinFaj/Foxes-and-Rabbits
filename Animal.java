@@ -5,7 +5,7 @@ import java.util.List;
  * @author (Nihinlolamiwa Fajemilehin)
  * @version (5ht of January 2019)
  */
-public class Animal
+public abstract class Animal
 {
     // Whether the animal is alive or not.
     private boolean alive;
@@ -81,7 +81,5 @@ public class Animal
     /**
      * Allows an animal to act in accordance to it's type
      */
-    public void act(List<Animal> newAnimals)
-    {
-    }
+    abstract public void act(List<Animal> newAnimals);
 }
