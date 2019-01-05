@@ -1,4 +1,4 @@
-
+import java.util.List;
 /**
  * The Animal class, which acts a Superclass for all types of animals in the Simulator program
  *
@@ -23,7 +23,7 @@ public class Animal
         this.field = field;
         this.location = location;
     }
-    
+
     /**
      * To get the current field pf the animal
      * @return The Animal's field
@@ -63,8 +63,8 @@ public class Animal
     {
         return alive;
     }
-    
-     /**
+
+    /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
      */
@@ -76,5 +76,12 @@ public class Animal
             location = null;
             field = null;
         }
+    }
+    
+    /**
+     * Allows an animal to act in accordance to it's type
+     */
+    public void act(List<Animal> newAnimals)
+    {
     }
 }
