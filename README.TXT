@@ -1,5 +1,6 @@
 Project: foxes-and-rabbits-v1
 Authors: Michael Kölling and David J. Barnes
+Refactored By: Nihinlolamiwa Fajemilehin
 
 This project is part of the material for chapter 10 of the book
 
