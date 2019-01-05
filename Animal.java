@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Random;
+
 /**
  * The Animal class, which acts a Superclass for all types of animals in the Simulator program
  *
@@ -7,6 +9,8 @@ import java.util.List;
  */
 public abstract class Animal
 {
+    // A shared random number generator to control breeding.
+    private static final Random rand = Randomizer.getRandom();
     // Whether the animal is alive or not.
     private boolean alive;
     // The field occupied by the animal.
@@ -27,6 +31,14 @@ public abstract class Animal
         age = 0;
     }
 
+    /**
+     * Get the shared random value.
+     * @return The shared random value.
+     */
+    protected Random getSharedRandom()
+    {
+        return rand;
+    }
     /**
      * To get the current field pf the animal
      * @return The Animal's field
@@ -104,10 +116,51 @@ public abstract class Animal
     protected boolean canBreed()
     {
         return getAge() >= getBreedingAge();
-    }   
+    } 
+    
+    /**
+     * Increase the age. This could result in the animal's death.
+     */
+    protected void incrementAge()
+    {
+        int age = getAge();
+        age++;
+        if(age > getMaxAge()) {
+            setDead();
+        }
+    }    
+    
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     * @return The number of births (may be zero).
+     */
+    protected int breed()
+    {
+        int births = 0;
+        if(canBreed() && rand.nextDouble() <= getBreedingProbability()) {
+            births = rand.nextInt(getMaxLitterSize()) + 1;
+        }
+        return births;
+    }    
+    
+    /**
+     * Get the animal's breeding probability
+     */
+    abstract public double getBreedingProbability(); 
+    
+    /**
+     * Get the animal's maximum litter size 
+     */
+    abstract public int getMaxLitterSize();     
+    
+    /**
+     * Get the maximum age the animal can live to
+     */
+    abstract public int getMaxAge();
    
     /**
-     * Get the breedding age of the Animal
+     * Get the breeding age of the Animal
      */
     abstract public int getBreedingAge();   
 

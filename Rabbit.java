@@ -20,8 +20,6 @@ public class Rabbit extends Animal
     private static final double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
-    // A shared random number generator to control breeding.
-    private static final Random rand = Randomizer.getRandom();
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -36,7 +34,7 @@ public class Rabbit extends Animal
         super(field, location);
         setLocation(location);
         if(randomAge) {
-            setAge(rand.nextInt(MAX_AGE));
+            setAge(getSharedRandom().nextInt(MAX_AGE));
         }
     }
     
@@ -61,19 +59,6 @@ public class Rabbit extends Animal
             }
         }
     }
-
-    /**
-     * Increase the age.
-     * This could result in the rabbit's death.
-     */
-    private void incrementAge()
-    {
-        int age = getAge();
-        age++;
-        if(age > MAX_AGE) {
-            setDead();
-        }
-    }
     
     /**
      * Check whether or not this rabbit is to give birth at this step.
@@ -92,20 +77,6 @@ public class Rabbit extends Animal
             newRabbits.add(young);
         }
     }
-        
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     * @return The number of births (may be zero).
-     */
-    private int breed()
-    {
-        int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
     
     /**
      * Get the breedding age of the Rabbit
@@ -114,4 +85,30 @@ public class Rabbit extends Animal
     {
         return BREEDING_AGE;
     }
+    
+    /**
+     * Get the maximum age the Rabbit can live to
+     */
+    public int getMaxAge()
+    {
+        return MAX_AGE;
+    }
+    
+    /**
+     * Get the Rabbit's breeding probability.
+     * @return The breeding probability.
+     */
+    public double getBreedingProbability()
+    {
+        return BREEDING_PROBABILITY;
+    }
+    
+    /**
+     * Get the Rabbit's maximum litter size. 
+     * @return The max litter size.
+     */
+    public int getMaxLitterSize()
+    {
+        return MAX_LITTER_SIZE;
+    }    
 }
