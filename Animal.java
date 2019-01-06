@@ -7,7 +7,7 @@ import java.util.Random;
  * @author (Nihinlolamiwa Fajemilehin)
  * @version (5th of January 2019)
  */
-public abstract class Animal
+public abstract class Animal extends Actor
 {
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
@@ -74,7 +74,7 @@ public abstract class Animal
      * Check whether the animal is alive or not.
      * @return True if the animal is still alive.
      */
-    protected boolean isAlive()
+    protected boolean isActive()
     {
         return alive;
     }
@@ -167,5 +167,5 @@ public abstract class Animal
     /**
      * Allows an animal to act in accordance to it's type
      */
-    abstract public void act(List<Animal> newAnimals);
+    abstract public void act(List<Actor> newAnimals);
 }
